@@ -40,3 +40,42 @@
 .read-the-docs {
   color: #888;
 }
+
+.livros-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.livros-container h1 {
+  text-align: center;
+  color: #4a90e2;
+  margin-bottom: 20px;
+}
+
+.livro-card {
+  background-color: #f9f9f9;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.livro-card h2 {
+  color: #333;
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.livro-card p {
+  color: #555;
+  font-size: 1em;
+  margin-top: 8px;
+}
+
+.livro-card:hover {
+  transform: translateY(-5px);
+}

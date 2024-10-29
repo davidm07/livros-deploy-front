@@ -2,27 +2,36 @@ import { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
-  const [data, setData] = useState(null);
-  const apiRota = import.meta.env.VITE_URL;
+  const [livros, setLivros] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchLivros = async () => {
       try {
-        const response = await fetch(apiRota);
+        const response = await fetch(import.meta.env.VITE_URL);
         const result = await response.json();
-        setData(result);
+        setLivros(result);
       } catch (error) {
         console.error("Erro ao buscar dados:", error);
       }
     };
 
-    fetchData();
-  }, [apiRota]);
+    fetchLivros();
+  }, []);
 
   return (
-    <>
-      {data && <pre>{JSON.stringify(data, null, 2)}</pre>}
-    </>
+    <div className="livros-container">
+      <h1>Livros Cadastrados</h1>
+      {livros.length > 0 ? (
+        livros.map((livro, index) => (
+          <div key={index} className="livro-card">
+            <h2><strong>Título:</strong>{livro.titulo}</h2>
+            <p><strong>Autor:</strong> {livro.autor}</p>
+          </div>
+        ))
+      ) : (
+        <p>Nenhum livro cadastrado.</p>
+      )}
+    </div>
   );
 }
 
