@@ -1,14 +1,19 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 
+interface Livro {
+  titulo: string;
+  autor: string;
+}
+
 function App() {
-  const [livros, setLivros] = useState([]);
+  const [livros, setLivros] = useState<Livro[]>([]);
 
   useEffect(() => {
     const fetchLivros = async () => {
       try {
         const response = await fetch(import.meta.env.VITE_URL);
-        const result = await response.json();
+        const result: Livro[] = await response.json();
         setLivros(result);
       } catch (error) {
         console.error("Erro ao buscar dados:", error);
@@ -24,7 +29,7 @@ function App() {
       {livros.length > 0 ? (
         livros.map((livro, index) => (
           <div key={index} className="livro-card">
-            <h2><strong>Título:</strong>{livro.titulo}</h2>
+            <h2><strong>Título:</strong> {livro.titulo}</h2>
             <p><strong>Autor:</strong> {livro.autor}</p>
           </div>
         ))
